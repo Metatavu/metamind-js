@@ -1,0 +1,40 @@
+.user-image {
+  max-width: 64px;
+}
+
+.discussion-container {
+  min-height: 800px;
+  max-height: 800px;
+  padding: 20px;
+  background-color: #eee;
+  overflow: auto;
+  border: 3px solid #eee;
+}
+
+.metamind-container {
+  margin-top: 150px;
+}
+
+.bot-input-container {
+  margin-top: 7px;
+}
+
+.card {
+  margin-top: 10px;
+}
+
+.card:last-child {
+  margin-bottom: 30px;
+}
+
+.bot-response {
+  margin-left: 95px;
+}
+
+.quick-responses {
+  padding-bottom: 5px;
+}
+
+.quick-message-btn {
+  margin-right: 5px;
+}
