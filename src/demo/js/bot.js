@@ -40,6 +40,10 @@
     $('.discussion-container')[0].scrollTop = $('.discussion-container')[0].scrollHeight;
     window.metamind.sendMessage(message);
   }
+  
+  function replaceLineBreaks(text) {
+    return (text||'').replace(/\n/g, '<br/>');
+  }
 
   window.metamind.on('response', function(data) {
     $('.send-message-btn').removeAttr('disabled');
@@ -58,7 +62,7 @@
            <img class="mr-3 user-image" src="${botImage}">
            <div class="media-body">
              <h5 class="mt-0">Metamind</h5>
-             ${data.response}
+             ${replaceLineBreaks(data.response)}
            </div>
           </div>
         </div>

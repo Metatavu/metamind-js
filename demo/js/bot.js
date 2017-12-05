@@ -8,13 +8,13 @@
            </div>
           </div>
         </div>
-      </div>`);$('.discussion-container')[0].scrollTop=$('.discussion-container')[0].scrollHeight;window.metamind.sendMessage(message)}window.metamind.on('response',function(data){$('.send-message-btn').removeAttr('disabled');$('.user-text-input').val('');for(var i=0;i<data.quickResponses.length;i++){$('.quick-responses').append(`<button class="btn btn-info btn-sm quick-message-btn">${data.quickResponses[i]}</button>`)}$('#botHintText').text(data.hint||'');$('.discussion-container').append(`<div class="card bot-response">
+      </div>`);$('.discussion-container')[0].scrollTop=$('.discussion-container')[0].scrollHeight;window.metamind.sendMessage(message)}function replaceLineBreaks(text){return(text||'').replace(/\n/g,'<br/>')}window.metamind.on('response',function(data){$('.send-message-btn').removeAttr('disabled');$('.user-text-input').val('');for(var i=0;i<data.quickResponses.length;i++){$('.quick-responses').append(`<button class="btn btn-info btn-sm quick-message-btn">${data.quickResponses[i]}</button>`)}$('#botHintText').text(data.hint||'');$('.discussion-container').append(`<div class="card bot-response">
         <div class="card-body">
           <div class="media">
            <img class="mr-3 user-image" src="${botImage}">
            <div class="media-body">
              <h5 class="mt-0">Metamind</h5>
-             ${data.response}
+             ${replaceLineBreaks(data.response)}
            </div>
           </div>
         </div>
