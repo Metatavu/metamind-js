@@ -10,6 +10,7 @@ class Metamind {
     this.messagesApi = new MetamindClient.MessagesApi();
     this.apiUrl = options.apiUrl;
     this.apiKey = options.apiKey;
+    this.story = options.story;
     this.listeners = {};
     this.locale = 'fi';
     this.timeZone = 'Europe/Helsinki';
@@ -65,6 +66,7 @@ class Metamind {
     }
     
     const payload = MetamindClient.Session.constructFromObject({
+      story: this.story,
       locale: this.locale,
       timeZone: this.timeZone,
       visitor: navigator ? navigator.userAgent : 'Unknown'

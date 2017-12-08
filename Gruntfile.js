@@ -4,7 +4,6 @@
 const _ = require('lodash');
 const fs = require('fs');
 const util = require('util');
-const pug = require('pug');
 const path = require('path');
 
 module.exports = function(grunt) {

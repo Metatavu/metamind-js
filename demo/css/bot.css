@@ -12,7 +12,7 @@
 }
 
 .metamind-container {
-  margin-top: 150px;
+  margin-top: 50px;
 }
 
 .bot-input-container {
@@ -37,4 +37,13 @@
 
 .quick-message-btn {
   margin-right: 5px;
+}
+
+.bot-typing {
+  text-align: right;
+  margin-top: -10px;
+}
+
+.bot-typing img {
+  max-height: 70px; 
 }

@@ -1,26 +1,27 @@
 (() => {
   'use strict';
 
-  window.metamind = new window.Metamind({apiUrl: 'http://dev-metamind-api.metatavu.io:8080/v1'});
+  window.metamind = new window.Metamind({apiUrl: 'http://dev-metamind-api.metatavu.io:8080/v1', 'story': 'lumme-electricity-order' });
 
   var botImage = 'https://robohash.org/' + Math.random().toString(36).substr(2);
-
+  
   $(document).on('click', '.quick-message-btn', function(e) {
     sendMessage($(this).text());
   });
 
   $('.send-message-btn').click(function(e) {
-    var disabled = $(this).attr('disabled');
-    var text = $('.user-text-input').val();
+    sendMessage();
+  });
+  
+  function sendMessage(text) {
+    $('.bot-typing').show();
+    const disabled = $('.send-message-btn').attr('disabled');
+    const message = text || $('.user-text-input').val();
 
     if (typeof disabled !== typeof undefined && disabled !== false) {
       return;
     }
 
-    sendMessage(text);
-  });
-  
-  function sendMessage(message) {
     $('.send-message-btn').attr('disabled', 'disabled');
     $('#botHintText').text('');
     $('.quick-responses').empty();
@@ -46,6 +47,7 @@
   }
 
   window.metamind.on('response', function(data) {
+    $('.bot-typing').hide();
     $('.send-message-btn').removeAttr('disabled');
     $('.user-text-input').val('');
 
@@ -61,7 +63,7 @@
           <div class="media">
            <img class="mr-3 user-image" src="${botImage}">
            <div class="media-body">
-             <h5 class="mt-0">Metamind</h5>
+             <h5 class="mt-0">Lumme Bot</h5>
              ${replaceLineBreaks(data.response)}
            </div>
           </div>
@@ -70,4 +72,17 @@
     );
     $('.discussion-container')[0].scrollTop = $('.discussion-container')[0].scrollHeight;
   });
+  
+  $(document).ready(() => {
+    $('.bot-typing').hide();
+    $('.send-message-btn').attr('disabled', 'disabled');
+    window.metamind.sendMessage('INIT');
+  });
+  
+  $(document).on('keydown', (event) => {
+    if (event.keyCode === 13) {
+      sendMessage();
+    }
+  });
+  
 })();
