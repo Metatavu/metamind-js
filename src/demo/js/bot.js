@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  window.metamind = new window.Metamind({apiUrl: 'http://dev-metamind-api.metatavu.io:8080/v1', 'story': 'lumme-electricity-order' });
+  window.metamind = new window.Metamind({apiUrl: 'https://api.metamind.fi/v1', 'story': 'lumme-electricity-order' });
 
   var botImage = 'https://robohash.org/' + Math.random().toString(36).substr(2);
   
@@ -97,7 +97,7 @@
            <img class="mr-3 user-image" src="${botImage}">
            <div class="media-body">
              <h5 class="mt-0">Lumme Bot</h5>
-             ${replaceLineBreaks(data.response)}
+             ${data.response}
            </div>
           </div>
         </div>
