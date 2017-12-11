@@ -16,12 +16,13 @@
   function sendMessage(text) {
     $('.bot-typing').show();
     const disabled = $('.send-message-btn').attr('disabled');
-    const message = text || $('.user-text-input').val();
+    const message = text || $('.user-text-input').val() || $('.user-date-input').val();
 
     if (typeof disabled !== typeof undefined && disabled !== false) {
       return;
     }
 
+    $('.user-text-input').val('');
     $('.send-message-btn').attr('disabled', 'disabled');
     $('#botHintText').text('');
     $('.quick-responses').empty();
@@ -50,9 +51,41 @@
     $('.bot-typing').hide();
     $('.send-message-btn').removeAttr('disabled');
     $('.user-text-input').val('');
-
+    $('.user-text-input').hide();
+    $('.user-date-input').hide();
+    
     for (var i = 0; i < data.quickResponses.length; i++) {
       $('.quick-responses').append(`<button class="btn btn-info btn-sm quick-message-btn">${data.quickResponses[i]}</button>`);
+    }
+    
+    const parsedResponse = $('<pre>').html(data.response);
+    const type = parsedResponse.find('input[name="metamind-hint-type"]').val() || 'text';
+    
+    if (type === 'date') {
+      const dateAfterParam = parsedResponse.find('input[name="metamind-hint-date-after"]').val();
+      let dateAfter = null;
+      if (dateAfterParam) {
+        const dateAfterParts = dateAfterParam.split(' ');
+        if (dateAfterParts.length === 3) {       
+          if (dateAfterParts[0] === 'add') {
+            dateAfter = moment().add(dateAfterParts[1], dateAfterParts[2]).toDate();
+          } else if (dateAfterParam[0] === 'subtract') {
+            dateAfter = moment().subtract(dateAfterParts[1], dateAfterParts[2]).toDate();
+          }
+        }
+      }
+
+      const flatpickrInstance = $('.user-date-input')[0]._flatpickr;
+      flatpickrInstance.set('minDate', dateAfter ? dateAfter : null);
+    };
+    
+    switch (type) {
+      case 'text':
+        $('.user-text-input').show();
+      break;
+      case 'date':
+        $('.user-date-input').show();
+      break;
     }
 
     $('#botHintText').text(data.hint || '');
@@ -75,6 +108,12 @@
   
   $(document).ready(() => {
     $('.bot-typing').hide();
+    $('.user-date-input').flatpickr({
+      "locale": "fi",
+      "dateFormat": "d.m.Y",
+      "allowInput": false
+    });
+    
     $('.send-message-btn').attr('disabled', 'disabled');
     window.metamind.sendMessage('INIT');
   });

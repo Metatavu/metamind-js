@@ -8,8 +8,9 @@
     <title>Metamind Demo</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/bot.css"/>
+    <link rel="stylesheet" href="https://cdn.metatavu.io/libs/flatpickr/4.0.6/flatpickr.min.css"/>
   </head>
-
+  
   <body>
 
     <main role="main" class="container">
@@ -18,7 +19,8 @@
         <div class="bot-input-container">
           <div class="quick-responses"></div>
           <div class="input-group">
-            <input type="text" class="form-control user-text-input" placeholder="Sano jotain..." aria-label="Sano jotain..." aria-describedby="botHintText">
+            <input type="text" class="form-control user-text-input" placeholder="Sano jotain..." aria-label="Sano jotain..." aria-describedby="botHintText"/>
+            <input type="text" class="form-control user-date-input" aria-describedby="botHintText" style="display: none"/>
             <span class="input-group-btn">
               <button class="btn btn-primary send-message-btn" type="button">Lähetä!</button>
             </span>
@@ -36,6 +38,9 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.metatavu.io/libs/flatpickr/4.0.6/flatpickr.min.js"></script>
+    <script type="text/javascript" src="https://cdn.metatavu.io/libs/flatpickr/4.0.6/l10n/fi.js"></script>
+    <script type="text/javascript" src="https://cdn.metatavu.io/libs/moment/2.19.2/moment-with-locales.min.js"></script>
     <script src="js/metamind-client-bundle.js"></script>
     <script src="js/bot.js"></script>
   </body>
