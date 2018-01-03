@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  window.metamind = new window.Metamind({apiUrl: 'https://api.metamind.fi/v1', 'story': 'lumme-electricity-order' });
+  window.metamind = new window.Metamind({apiUrl: 'http://dev-metamind-api.metatavu.io:8080/v1', 'story': 'lumme-electricity-order' });
 
   var botImage = 'https://robohash.org/' + Math.random().toString(36).substr(2);
   
@@ -14,14 +14,18 @@
   });
   
   function sendMessage(text) {
-    $('.bot-typing').show();
     const disabled = $('.send-message-btn').attr('disabled');
     const message = text || $('.user-text-input').val() || $('.user-date-input').val();
+
+    if (!message.trim()) {
+      return;
+    }
 
     if (typeof disabled !== typeof undefined && disabled !== false) {
       return;
     }
-
+    
+    $('.bot-typing').show();
     $('.user-text-input').val('');
     $('.send-message-btn').attr('disabled', 'disabled');
     $('#botHintText').text('');

@@ -36,6 +36,10 @@ class Metamind {
   }
   
   sendMessage(content) {
+    if (!content.trim()) {
+      return;
+    }
+
     this.getSessionId()
       .then((sessionId) => {
         const message = MetamindClient.Message.constructFromObject({
